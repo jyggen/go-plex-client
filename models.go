@@ -107,6 +107,7 @@ type Media struct {
 	AudioProfile          string  `json:"audioProfile"`
 	Bitrate               int     `json:"bitrate"`
 	Container             string  `json:"container"`
+	DeletedAt             int     `json:"deletedAt"`
 	Duration              int     `json:"duration"`
 	Has64bitOffsets       bool    `json:"has64bitOffsets"`
 	Height                int     `json:"height"`
