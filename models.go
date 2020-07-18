@@ -82,6 +82,7 @@ type Metadata struct {
 	Year                  int          `json:"year"`
 	Director              []TaggedData `json:"Director"`
 	Writer                []TaggedData `json:"Writer"`
+	Marker                []Marker     `json:"Marker"`
 }
 
 // MetadataV1 ...
@@ -187,6 +188,13 @@ type LibrarySections struct {
 	MediaContainer struct {
 		Directory []Directory `json:"Directory"`
 	} `json:"MediaContainer"`
+}
+
+// Marker ...
+type Marker struct {
+	Type            string `json:"type"`
+	StartTimeOffset int    `json:"startTimeOffset"`
+	EndTimeOffset   int    `json:"endTimeOffset"`
 }
 
 // TaggedData ...
