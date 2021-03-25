@@ -40,49 +40,51 @@ type SearchResults struct {
 
 // Metadata ...
 type Metadata struct {
-	Player                Player       `json:"Player"`
-	Session               Session      `json:"Session"`
-	User                  User         `json:"User"`
-	AddedAt               int          `json:"addedAt"`
-	Art                   string       `json:"art"`
-	ContentRating         string       `json:"contentRating"`
-	Duration              int          `json:"duration"`
-	GrandparentArt        string       `json:"grandparentArt"`
-	GrandparentKey        string       `json:"grandparentKey"`
-	GrandparentRatingKey  string       `json:"grandparentRatingKey"`
-	GrandparentTheme      string       `json:"grandparentTheme"`
-	GrandparentThumb      string       `json:"grandparentThumb"`
-	GrandparentTitle      string       `json:"grandparentTitle"`
-	GUID                  string       `json:"guid"`
-	Index                 int64        `json:"index"`
-	Key                   string       `json:"key"`
-	LastViewedAt          int          `json:"lastViewedAt"`
-	LibrarySectionID      int          `json:"librarySectionID"`
-	LibrarySectionKey     string       `json:"librarySectionKey"`
-	LibrarySectionTitle   string       `json:"librarySectionTitle"`
-	OriginallyAvailableAt string       `json:"originallyAvailableAt"`
-	ParentIndex           int64        `json:"parentIndex"`
-	ParentKey             string       `json:"parentKey"`
-	ParentRatingKey       string       `json:"parentRatingKey"`
-	ParentThumb           string       `json:"parentThumb"`
-	ParentTitle           string       `json:"parentTitle"`
-	RatingCount           string       `json:"ratingCount"`
-	Rating                float64      `json:"rating"`
-	RatingKey             string       `json:"ratingKey"`
-	SessionKey            string       `json:"sessionKey"`
-	Summary               string       `json:"summary"`
-	Thumb                 string       `json:"thumb"`
-	Media                 []Media      `json:"Media"`
-	Title                 string       `json:"title"`
-	TitleSort             string       `json:"titleSort"`
-	Type                  string       `json:"type"`
-	UpdatedAt             int          `json:"updatedAt"`
-	ViewCount             json.Number  `json:"viewCount"`
-	ViewOffset            int          `json:"viewOffset"`
-	Year                  int          `json:"year"`
-	Director              []TaggedData `json:"Director"`
-	Writer                []TaggedData `json:"Writer"`
-	Marker                []Marker     `json:"Marker"`
+	Player                Player         `json:"Player"`
+	Session               Session        `json:"Session"`
+	User                  User           `json:"User"`
+	AddedAt               int            `json:"addedAt"`
+	Art                   string         `json:"art"`
+	ContentRating         string         `json:"contentRating"`
+	Duration              int            `json:"duration"`
+	GrandparentArt        string         `json:"grandparentArt"`
+	GrandparentKey        string         `json:"grandparentKey"`
+	GrandparentRatingKey  string         `json:"grandparentRatingKey"`
+	GrandparentTheme      string         `json:"grandparentTheme"`
+	GrandparentThumb      string         `json:"grandparentThumb"`
+	GrandparentTitle      string         `json:"grandparentTitle"`
+	GUID                  string         `json:"guid"`
+	Index                 int64          `json:"index"`
+	Key                   string         `json:"key"`
+	LastViewedAt          int            `json:"lastViewedAt"`
+	LibrarySectionID      int            `json:"librarySectionID"`
+	LibrarySectionKey     string         `json:"librarySectionKey"`
+	LibrarySectionTitle   string         `json:"librarySectionTitle"`
+	OriginallyAvailableAt string         `json:"originallyAvailableAt"`
+	ParentIndex           int64          `json:"parentIndex"`
+	ParentKey             string         `json:"parentKey"`
+	ParentRatingKey       string         `json:"parentRatingKey"`
+	ParentThumb           string         `json:"parentThumb"`
+	ParentTitle           string         `json:"parentTitle"`
+	RatingCount           string         `json:"ratingCount"`
+	Rating                float64        `json:"rating"`
+	RatingKey             string         `json:"ratingKey"`
+	SessionKey            string         `json:"sessionKey"`
+	Summary               string         `json:"summary"`
+	Thumb                 string         `json:"thumb"`
+	Media                 []Media        `json:"Media"`
+	Title                 string         `json:"title"`
+	TitleSort             string         `json:"titleSort"`
+	Type                  string         `json:"type"`
+	UpdatedAt             int            `json:"updatedAt"`
+	ViewCount             json.Number    `json:"viewCount"`
+	ViewOffset            int            `json:"viewOffset"`
+	Year                  int            `json:"year"`
+	Director              []TaggedData   `json:"Director"`
+	Writer                []TaggedData   `json:"Writer"`
+	Marker                []Marker       `json:"Marker"`
+	Location              []Location     `json:"Location"`
+	ExternalGuid          []ExternalGuid `json:"Guid"`
 }
 
 // MetadataV1 ...
@@ -161,6 +163,11 @@ type MediaMetadata struct {
 type Location struct {
 	ID   int    `json:"id"`
 	Path string `json:"path"`
+}
+
+// ExternalGuid is an external identifier
+type ExternalGuid struct {
+	ID string `json:"id"`
 }
 
 // Directory shows plex directory metadata
