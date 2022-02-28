@@ -85,6 +85,7 @@ type Metadata struct {
 	Marker                []Marker       `json:"Marker"`
 	Location              []Location     `json:"Location"`
 	ExternalGuid          []ExternalGuid `json:"Guid"`
+	ExternalRating        []float64      `json:"Rating"`
 }
 
 // MetadataV1 ...
