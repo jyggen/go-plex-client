@@ -71,6 +71,7 @@ type Metadata struct {
 	ParentTitle           string       `json:"parentTitle"`
 	RatingCount           int          `json:"ratingCount"`
 	Rating                float64      `json:"rating"`
+	AltRating             []AltRating  `json:"Rating"`
 	RatingKey             string       `json:"ratingKey"`
 	SessionKey            string       `json:"sessionKey"`
 	Summary               string       `json:"summary"`
@@ -87,12 +88,17 @@ type Metadata struct {
 	Writer                []TaggedData `json:"Writer"`
 	Marker                []Marker     `json:"Marker"`
 	Location              []Location   `json:"Location"`
-	ExternalRating        []float64    `json:"Rating"`
 }
 
 // AltGUID represents a Globally Unique Identifier for a metadata provider that is not actively being used.
 type AltGUID struct {
 	ID string `json:"id"`
+}
+
+type AltRating struct {
+	Image string  `json:"image"`
+	Value float64 `json:"value"`
+	Type  string  `json:"type"`
 }
 
 type boolOrInt struct {
