@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -111,7 +112,7 @@ func CheckPIN(id int, clientIdentifier string) (PinResponse, error) {
 
 	// we are not authorized yet
 	if pinInformation.AuthToken == "" {
-		return pinInformation, errors.New("pin is not authorized yet")
+		return pinInformation, errors.New(ErrorPINNotAuthorized)
 	}
 
 	// we are authorized! Yay!
@@ -149,10 +150,26 @@ func (p Plex) LinkAccount(code string) error {
 
 	// should return 204 for success
 	if resp.StatusCode != http.StatusNoContent {
-		return errors.New("failed to link account: " + resp.Status)
+		return fmt.Errorf(ErrorLinkAccount, resp.Status)
 	}
 
 	return nil
+}
+
+type webhookErr struct {
+	Err []struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Status  int    `json:"status"`
+	} `json:"errors"`
+}
+
+func (w webhookErr) Error() string {
+	if len(w.Err) == 0 {
+		return ""
+	}
+
+	return w.Err[0].Message
 }
 
 // GetWebhooks fetches all webhooks - requires plex pass
@@ -172,6 +189,18 @@ func (p Plex) GetWebhooks() ([]string, error) {
 	}
 
 	defer resp.Body.Close()
+
+	if resp.StatusCode >= http.StatusBadRequest && resp.StatusCode < http.StatusInternalServerError {
+		var webhookErr webhookErr
+
+		if err := json.NewDecoder(resp.Body).Decode(&webhookErr); err != nil {
+			return webhooks, err
+		}
+
+		return webhooks, fmt.Errorf(ErrorWebhook, webhookErr.Error())
+	} else if resp.StatusCode != http.StatusOK {
+		return webhooks, fmt.Errorf(ErrorWebhook, resp.Status)
+	}
 
 	var hook []Hooks
 
@@ -228,7 +257,7 @@ func (p Plex) SetWebhooks(webhooks []string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusCreated {
-		return errors.New("setting webhook failed")
+		return errors.New(ErrorFailedToSetWebhook)
 	}
 
 	return nil
