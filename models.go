@@ -55,10 +55,11 @@ type Metadata struct {
 	GrandparentThumb      string       `json:"grandparentThumb"`
 	GrandparentTitle      string       `json:"grandparentTitle"`
 	GUID                  string       `json:"guid"`
+	AltGUIDs              []AltGUID    `json:"Guid"`
 	Index                 int64        `json:"index"`
 	Key                   string       `json:"key"`
 	LastViewedAt          int          `json:"lastViewedAt"`
-	LibrarySectionID      int          `json:"librarySectionID"`
+	LibrarySectionID      json.Number  `json:"librarySectionID"`
 	LibrarySectionKey     string       `json:"librarySectionKey"`
 	LibrarySectionTitle   string       `json:"librarySectionTitle"`
 	OriginallyAvailableAt string       `json:"originallyAvailableAt"`
