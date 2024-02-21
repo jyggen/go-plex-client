@@ -1227,3 +1227,26 @@ func (p *Plex) TerminateSession(sessionID string, reason string) error {
 
 	return nil
 }
+
+func (p *Plex) UploadPoster(ratingKey string, poster io.Reader) error {
+	query := fmt.Sprintf("%s/library/metadata/%s/posters", p.URL, ratingKey)
+	data, err := io.ReadAll(poster)
+
+	if err != nil {
+		return err
+	}
+
+	resp, err := p.post(query, data, p.Headers)
+
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return errors.New(resp.Status)
+	}
+
+	return nil
+}
