@@ -101,7 +101,7 @@ type Setting struct {
 	Label      string `json:"label"`
 	Summary    string `json:"summary"`
 	Type       string `json:"type"`
-	Value      int64  `json:"value"`
+	Value      string `json:"value"`
 	EnumValues string `json:"enumValues"`
 }
 
