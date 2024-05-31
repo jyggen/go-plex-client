@@ -59,6 +59,7 @@ type Metadata struct {
 	AltGUIDs              []AltGUID    `json:"Guid"`
 	Index                 int64        `json:"index"`
 	Key                   string       `json:"key"`
+	LanguageOverride      string       `json:"languageOverride"`
 	LastViewedAt          int          `json:"lastViewedAt"`
 	LibrarySectionID      json.Number  `json:"librarySectionID"`
 	LibrarySectionKey     string       `json:"librarySectionKey"`
